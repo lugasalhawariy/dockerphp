@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------
 
 function preproses($teks) {
-    $konek = mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = @mysqli_connect("dockerphp_db_1","root","password","stbi") ;
     //bersihkan tanda baca, ganti dengan space
     $teks = str_replace("'", " ", $teks);
     $teks = str_replace("-", " ", $teks);
