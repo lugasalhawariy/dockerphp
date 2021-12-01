@@ -10,6 +10,9 @@ echo
 			<td>Password</td><td> : <input name='paswd' type='password'></td>
 		</tr>
 		<tr>
+			<td>Jenis Kelamin</td><td> : <input name='jk' type='text'></td>
+		</tr>
+		<tr>
 			<td>Captcha<br>
 			<img src='captcha.php' />
 			</td>
