@@ -1,7 +1,7 @@
 <?php  
 
 
-$koneksi = mysqli_connect("localhost","root","","webku");
+$koneksi = mysqli_connect("dockerphp_db_1","root","password","webku");
 
 
 //1. QUERY

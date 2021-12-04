@@ -42,7 +42,7 @@ function preproses($teks) {
 //-------------------------------------------------------------------------
 //fungsi untuk membuat index
 function buatindex() {
-    $konek = mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = @mysqli_connect("dockerphp_db_1","root","password","stbi") ;
     //hapus index sebelumnya
     $querycate = "TRUNCATE TABLE tbindex";
     mysqli_query($konek, $querycate);
