@@ -1,7 +1,7 @@
 <?php  
 
 
-$koneksi = mysqli_connect("dockerphp_db_1","root","password","webku");
+$koneksi = @mysqli_connect("dockerphp_db_1","root","password","webku");
 
 
 //1. QUERY
@@ -48,7 +48,7 @@ function registrasi($data){
 	$password = password_hash($password, PASSWORD_DEFAULT);
 
 	//insert ke database
-	mysqli_query($koneksi, "INSERT INTO user VALUES('', '$nama_depan', '$nama_belakang', '$username', '$password', '$foto')");
+	@mysqli_query($koneksi, "INSERT INTO user VALUES(null, '$nama_depan', '$nama_belakang', '$username', '$password', '$foto')");
 	return mysqli_affected_rows($koneksi);
 }
 
@@ -111,7 +111,7 @@ function upload_user(){
 	$nama_baru .= '.';
 	$nama_baru .= $ekstensiGambar;
 
-	move_uploaded_file($tempat, 'img/user/'.$nama_baru);
+	@move_uploaded_file($tempat, 'img/user/'.$nama_baru);
 	return $nama_baru;
 
 }

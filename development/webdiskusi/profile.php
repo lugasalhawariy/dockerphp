@@ -97,6 +97,11 @@ $data = mysqli_fetch_assoc($result);
             </form>
         </div>
     </nav><!-- Akhir Navbar -->
+
+    <!-- Foto Header -->
+    <div class="bg mb-4">
+        <img src="img/bg.jpg" alt="" width="100%" height="328px">
+    </div>
     
     <div class="jumbotron">
     <h1 class="display-4"><?php echo $data['nama_depan'] . " " . $data['nama_belakang']; ?></h1>
@@ -110,11 +115,7 @@ $data = mysqli_fetch_assoc($result);
     </div>
 
     </div><!-- akhir dari div container -->
-    
-    <!-- Foto Header -->
-    <div class="bg">
-        <img src="img/bg.jpg" alt="" width="100%" height="328px">
-    </div>
+
     
     <div class="container p-3 mt-5">
 
