@@ -45,9 +45,6 @@ if(isset($_POST['login'])){
 
     // 3.3. Cek apakah username ada atau tidak (mysqli_num_rows adalah fungsi menghitung baris yang sama dengan Query)
     //      Jika ada, maka proses di dalamnya dijalankan
-   
-
-
 	if(mysqli_num_rows($result) === 1){
 
         if(mysqli_num_rows($blokir) === 1){

@@ -21,8 +21,11 @@ function registrasi($data){
 
 	global $koneksi;
 
+	// merubah string menjadi huruf kecil semua
 	$username = strtolower(stripcslashes($data['username']));
+	// agar data yang masuk benar-benar string
 	$password = mysqli_real_escape_string($koneksi, $data['password']);
+	// agar tidak ada tag html
 	$nama_depan = htmlspecialchars($data['nama_depan']);
 	$nama_belakang = htmlspecialchars($data['nama_belakang']);
 	$foto = upload_user();
