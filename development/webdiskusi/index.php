@@ -24,13 +24,18 @@ if(!isset($_SESSION['login'])){
 
 require 'function.php';
 // ambil Query dari tabel statusku
-$statusku = query("SELECT * FROM statusku JOIN user ON statusku.id_user = user.id_user");
+if(isset($_GET['keyword'])){
+    $statusku = cari($_GET['keyword']);
+}else{
+    $statusku = query("SELECT * FROM statusku JOIN user ON user.id_user = statusku.id_user");
+}
 // ambil Query dari tabel user
 $id = $_COOKIE['id'];
 
+
 // 1.2. Query semua kolom dari tabel *user yang memiliki *Id = dari variabel penampung cookie
-$result = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id'");
 // 1.3. Buat menjadi array assosiative
+$result = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id'");
 $data = mysqli_fetch_assoc($result);
 
 
@@ -94,14 +99,10 @@ $data = mysqli_fetch_assoc($result);
             
             <?php } ?>
             
-
-            
-
-
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="cari">Search</button>
+            <form class="form-inline my-2 my-lg-0" method="GET">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </nav>
@@ -120,7 +121,7 @@ $data = mysqli_fetch_assoc($result);
     <!-- Jika ada session login maka bisa buat status, jika tidak ya tidak! -->
     <?php if(isset($_SESSION['login'])) : ?>
         
-    <form method="post" action="tambah_status.php">
+    <form method="POST" action="tambah_status.php">
         
         <input type="hidden" name="id_user" id="id_user" value=" <?php echo $data['id_user']; ?>">
         <div class="form-row">
@@ -134,8 +135,6 @@ $data = mysqli_fetch_assoc($result);
                 <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
             </div>
         </div> 
-
-
     </form>
     <br><br><br><br>
     <?php endif; ?>

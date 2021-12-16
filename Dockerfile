@@ -54,6 +54,14 @@ RUN apt-get update
 RUN apt-get -y purge '^php7.4.*'
 RUN php -v
 
+RUN apk add --update libzip-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libxml2-dev icu-dev postgresql-dev curl-dev libmemcached-dev &&\
+    apk add --update --virtual build-dependencies build-base gcc wget autoconf && \
+    docker-php-ext-install gd && \
+    docker-php-ext-install zip &&\
+    docker-php-ext-install xml &&\
+    apk del build-dependencies &&\
+    rm -rf /var/cache/apk/*
+
 # Install Git
 RUN apt-get install -y git
 RUN git --version

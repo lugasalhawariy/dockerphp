@@ -7,10 +7,10 @@ $koneksi = @mysqli_connect("dockerphp_db_1","root","password","webku");
 //1. QUERY
 function query($query){
 	global $koneksi;
-	$result = mysqli_query($koneksi, $query);
+	$result = @mysqli_query($koneksi, $query);
 	$rows = [];
 
-	while ($row = mysqli_fetch_assoc($result)) {
+	while ($row = @mysqli_fetch_assoc($result)) {
 		$rows[] = $row;
 	}
 	return $rows;
@@ -51,7 +51,7 @@ function registrasi($data){
 	$password = password_hash($password, PASSWORD_DEFAULT);
 
 	//insert ke database
-	@mysqli_query($koneksi, "INSERT INTO user VALUES(null, '$nama_depan', '$nama_belakang', '$username', '$password', '$foto')");
+	mysqli_query($koneksi, "INSERT INTO user VALUES(null, '$nama_depan', '$nama_belakang', '$username', '$password', '$foto')");
 	return mysqli_affected_rows($koneksi);
 }
 
@@ -114,7 +114,7 @@ function upload_user(){
 	$nama_baru .= '.';
 	$nama_baru .= $ekstensiGambar;
 
-	@move_uploaded_file($tempat, 'img/user/'.$nama_baru);
+	move_uploaded_file($tempat, '/img/user/'.$nama_baru);
 	return $nama_baru;
 
 }
@@ -128,7 +128,7 @@ function tambah_status($data){
 
 	global $koneksi;
 	//insert ke database
-	mysqli_query($koneksi, "INSERT INTO statusku VALUES('', '$id_user', '$status', '$sumber')");
+	mysqli_query($koneksi, "INSERT INTO statusku VALUES(null, '$id_user', '$status', '$sumber')");
 	return mysqli_affected_rows($koneksi);
 }
 
@@ -176,11 +176,12 @@ function cari($keyword){
 
 	$query = 
 
-		"SELECT * FROM user WHERE
-			nama_depan LIKE '%$keyword%' OR
-			nama_belakang LIKE '%$keyword%'
+		"SELECT * FROM statusku JOIN user ON user.id_user = statusku.id_user WHERE
+			argumen LIKE '%$keyword%' OR
+			sumber LIKE '%$keyword%'
 		";
 
+	// return $query;
 	return query($query);
 }
 
