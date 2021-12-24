@@ -9,7 +9,7 @@ if(!isset($_SESSION['login'])){
 require 'function.php';
 
 if(isset($_POST['submit'])){
-	
+	// karena fungsi tambah_status menghasilkan nilai 1 jika file berhasil
 	if(tambah_status($_POST) > 0){
 
 		echo "<script>alert('Data Berhasil ditambahkan!'); document.location.href = 'index.php';</script>";

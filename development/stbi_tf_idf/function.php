@@ -18,6 +18,12 @@ function query($logic){
     return $rows;
 }
 
-function addDocument(){
-    
+function addDocument($data){
+    $judul = htmlspecialchars($data['judul']);
+    $isi = htmlspecialchars($data['isi']);
+
+    global $koneksi;
+
+    mysqli_query($koneksi, "INSERT INTO dokumen VALUES (null, '$judul', '$isi')");
+    return mysqli_affected_rows($koneksi);
 }
