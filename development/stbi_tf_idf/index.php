@@ -22,7 +22,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">TF-IDF</a>
+                    <a class="nav-link" href="tfidf.php">TF-IDF</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
@@ -72,10 +72,10 @@
             </tr>
 
             <!-- START: Query PHP -->
-            <?php 
+            <?php
                 require 'function.php';
-
-                $data = query("SELECT * FROM dokumen");
+                $data = new TFIDF;
+                $data = $data->query("SELECT * FROM dokumen");
             ?>
             <!-- END: QUERY PHP -->
 
