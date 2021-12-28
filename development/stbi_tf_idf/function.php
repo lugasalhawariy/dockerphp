@@ -37,6 +37,15 @@ class TFIDF
         return $rows;
     }
 
+    public function stringToArray($result)
+    {
+        $penampung = [];
+        foreach($result as $word){
+            $penampung = explode(' ', $word);
+        }
+        return $penampung;
+    }
+
     public function addDocument($data){
         $judul = htmlspecialchars($data['judul']);
         $isi = htmlspecialchars($data['isi']);
@@ -48,9 +57,10 @@ class TFIDF
         // ambil semua isi dari dokumen (menghasilkan array)
         $words = $this->query("SELECT isi FROM dokumen");
         $penampung = [];
-        foreach($words as $word){
-            $penampung = array_push($word['isi']);
+        foreach($words as $index => $word){
+            $penampung[$index] = $this->stringToArray($word);
         }
-        return print_r($penampung);
+        return $penampung;
     }
+
 }
