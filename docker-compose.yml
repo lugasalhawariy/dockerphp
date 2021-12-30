@@ -7,12 +7,14 @@ services:
   php:
     depends_on:
       - db
-    image: dockerphp
+    image: dockerphp:1.0
     restart: always
     ports:
       - 5000:80
     volumes:
       - ./development:/var/www/html
+    networks:
+      - dockerphp
 
   # PHPMyAdmin
   phpmyadmin:
@@ -24,19 +26,35 @@ services:
       - 5050:80
     environment:
       PMA_HOST: db
+    networks:
+      - dockerphp
 
   # MySQL
   db:
     image: mysql:5.7
     restart: always
     volumes:
-      - ./wordpress_db:/var/lib/mysql
+      - ./dockerphp_db:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USERNAME: lugasdev
+      MYSQL_DATABASE: dockerphp
+      MYSQL_PASSWORD: lugasdev
+      MYSQL_ROOT_PASSWORD: lugasdev
+    networks:
+      - dockerphp
+  
+  composer:
+    image: composer:2.2.1
+    depends_on:
+      - php
+    networks:
+      - dockerphp
+    
 
 # Volumes
 volumes:
-  wordpress_db:
-  wordpress_uploads:
+  dockerphp_db:
+  dockerphp_uploads:
+
+networks:
+  dockerphp:
