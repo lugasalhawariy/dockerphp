@@ -9,10 +9,10 @@ class Catalogue
     function getDBConnection()
     {
         $koneksiDB = new KoneksiDatabase;
-        $koneksiDB->namaServer = 'localhost';
-        $koneksiDB->namaDB = 'algen';
+        $koneksiDB->namaServer = 'dockerphp_db_1';
+        $koneksiDB->namaDB = 'dockerphp';
         $koneksiDB->namaUser = 'root';
-        $koneksiDB->passwordInPlaintext = '';
+        $koneksiDB->passwordInPlaintext = 'lugasdev';
 
         return $koneksiDB->konekKeDatabase();
     }
