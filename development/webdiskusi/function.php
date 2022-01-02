@@ -1,7 +1,7 @@
 <?php  
 
 
-$koneksi = @mysqli_connect("dockerphp_db_1","root","password","webku");
+$koneksi = @mysqli_connect("dockerphp_db_1","root","lugasdev","webdiskusi");
 
 
 //1. QUERY
@@ -114,7 +114,7 @@ function upload_user(){
 	$nama_baru .= '.';
 	$nama_baru .= $ekstensiGambar;
 
-	move_uploaded_file($tempat, '/img/user/'.$nama_baru);
+	move_uploaded_file($tempat , 'img/user/'.$nama_baru);
 	return $nama_baru;
 
 }

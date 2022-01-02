@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------
 
 function preproses($teks) {
-    $konek = @mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = @mysqli_connect("dockerphp_db_1","root","lugasdev","stbi") ;
     //bersihkan tanda baca, ganti dengan space
     $teks = str_replace("'", " ", $teks);
     $teks = str_replace("-", " ", $teks);
@@ -42,7 +42,7 @@ function preproses($teks) {
 //-------------------------------------------------------------------------
 //fungsi untuk membuat index
 function buatindex() {
-    $konek = @mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = @mysqli_connect("dockerphp_db_1","root","lugasdev","stbi") ;
     //hapus index sebelumnya
     $querycate = "TRUNCATE TABLE tbindex";
     mysqli_query($konek, $querycate);
@@ -87,7 +87,7 @@ function buatindex() {
 //-------------------------------------------------------------------------
 //fungsi hitungbobot, menggunakan pendekatan tf.idf 
 function hitungbobot() {
-    $konek = mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = mysqli_connect("dockerphp_db_1","root","lugasdev","stbi") ;
     //berapa jumlah DocId total?, n
     $query1 = "SELECT DISTINCT DocId FROM tbindex";
     $resn = mysqli_query($konek, $query1);
@@ -120,7 +120,7 @@ function hitungbobot() {
 //fungsi panjangvektor, jarak euclidean 
 //akar(penjumlahan kuadrat dari bobot setiapTerm)
 function panjangvektor() {
-    $konek = mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = mysqli_connect("dockerphp_db_1","root","lugasdev","stbi") ;
     //hapus isi tabel tbvektor
     $query1 = "TRUNCATE TABLE tbvektor";
     mysqli_query($konek, $query1);
@@ -154,7 +154,7 @@ function panjangvektor() {
 //fungsi hitungsim - kemiripan antara query
 //setiap dokumen dalam database (berdasarkan bobot di tbindex)
 function hitungsim($query) {
-    $konek = mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = mysqli_connect("dockerphp_db_1","root","lugasdev","stbi") ;
     //ambil jumlah total dokumen yang telah diindex (tbindex atau tbvektor), n
     $query5 = "SELECT Count(*) as n FROM tbvektor";
     $resn = mysqli_query($konek, $query5);
@@ -216,7 +216,7 @@ function hitungsim($query) {
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 function ambilcache($keyword) {
-    $konek = mysqli_connect("dockerphp_db_1","root","password","stbi") ;
+    $konek = mysqli_connect("dockerphp_db_1","root","lugasdev","stbi") ;
     $query11 = "SELECT * FROM tbcache WHERE Query = '$keyword' ORDER BY Value DESC";
     $resCache = mysqli_query($konek, $query11);
     $num_rows = mysqli_num_rows($resCache);

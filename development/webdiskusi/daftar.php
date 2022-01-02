@@ -100,7 +100,7 @@ if(isset($_POST['registrasi'])){
 
     <!-- Form masuk Login -->
     <div class="container p-3 pt-4 mt-5">
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data">
         
         <div class="form-row pb-2">
             <div class="col">

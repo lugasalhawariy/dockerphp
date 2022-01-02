@@ -63,7 +63,7 @@
         print("<table>");
         print("<tr><td>#</td><td>Term</td><td>DocID</td><td>Count</td><td>Bobot</td></tr>");
         $query2 = "SELECT * FROM tbindex ORDER BY Id";
-        $result = mysqli_query($konek, $query2);
+        $result = @mysqli_query($konek, $query2);
         while ($row = mysqli_fetch_array($result)) {
             print("<tr>");
             print("<td>" . $row['Id'] . "</td><td>" . $row['Term'] . "</td><td>" .
